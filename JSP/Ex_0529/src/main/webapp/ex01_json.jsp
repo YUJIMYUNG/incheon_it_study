@@ -7,18 +7,18 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	let p = {'name':'홍길동','age':'20','tel':'010-1111-1111'};
-	document.wirte('이름 : ' + p.name + "<br>");
-	document.wirte('이름 : ' + p.age + "<br>");
-	document.wirte('이름 : ' + p.tel + "<br>");
+	document.write('이름 : ' + p.name + "<br>");
+	document.write('이름 : ' + p.age + "<br>");
+	document.write('이름 : ' + p.tel + "<br>");
 	
-	document.wirte("<hr>");
+	document.write("<hr>");
 	
 	//json 1차원배열
 	let p_arr = [{'name':'일길','age':'30'},{'name':'이길동','age':'40'}]
 	
-	document.wirte(p_arr[0].name+" / "+ p_arr[0].age+"<br>");
-	document.wirte(p_arr[1].name+" / "+ p_arr[1].age+"<br>");
-	document.wirte("<hr>");
+	document.write(p_arr[0].name+" / "+ p_arr[0].age+"<br>");
+	document.write(p_arr[1].name+" / "+ p_arr[1].age+"<br>");
+	document.write("<hr>");
 	
 	//json다차원 배열
 	let course = {'name':'웹개발','start':'2024-05-05','end':'2024-07-10',
