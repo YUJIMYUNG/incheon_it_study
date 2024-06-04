@@ -1,3 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Array"%>
+<%@page import="vo.DeptVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="javax.naming.Context"%>
 <%@page import="javax.sql.DataSource"%>
@@ -20,7 +26,31 @@
     	//위에서 준비해둔 경로로 로그인 시도
     	Connection conn = ds.getConnection();
     	
-    	out.println("----- 디비 접속 성공 ----"); 
+    	String sql = "select * from dept";
+    	
+    	//문자열 형태의 sql문을 실제 쿼리문으로 전달
+    	PreparedStatement pstmt = conn.prepareStatement(sql);
+    	
+    	//executeQuery() : 전달받은 쿼리문을 실행하여 결과를 반환받는다. 
+    	//전달받은 데이터는 rs객체에 저장됨 
+    	ResultSet rs = pstmt.executeQuery(); 
+    	
+    	List<DeptVO> dept_list = new ArrayList<>();
+    	
+    	while(rs.next()){
+    		DeptVO vo = new DeptVO();
+    		
+    		//현재 행의 값을 vo에 담는다.
+    		vo.setDeptno(rs.getInt("depto"));
+    		vo.setDname(rs.getString("dname"));
+    		vo.setLoc(rs.getString("loc"));
+    		
+    		dept_list.add(vo);
+    	}
+    	
+    	rs.close();
+    	pstmt.close();
+    	conn.close();
     	
     %>
 <!DOCTYPE html>
@@ -28,8 +58,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function send(data){
+		let f = document.m_form;
+		let no = f.deptno;
+		no.value = data;
+		
+		f.action = 'sawon_list.jsp';
+		f.submit();
+		
+	}
+</script>
 </head>
 <body>
-
+	<form name="m_form">
+	<table border="1">
+		<caption>부서목록</caption>
+		<tr>
+			<td>부서번호</td>
+			<td>부서명</td>
+			<td>부서위치</td>
+		</tr>
+		<%for(int i = 0; i < dept_list.size(); i++){%>
+		<tr>
+			<td><%= dept_list.get(i).getDeptno() %></td>
+			<td><a href="javascript:send('<%= dept_list.get(i).getDeptno() %>');"><%= dept_list.get(i).getDname() %></a></td>
+			<td><%= dept_list.get(i).getLoc() %></td>
+		</tr>
+		<%} %>		
+	</table>
+	<input type='hidden' name='deptno'>
+	</form>
 </body>
 </html>
