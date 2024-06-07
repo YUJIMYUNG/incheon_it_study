@@ -16,6 +16,7 @@
 	\${3 !=2} = ${3 ne 2 }<br>
 	
 	<!-- param객 -->
+	<!-- /ex02_el.jsp?mas=hello 라면 hello라는 키 값을 볼 수 있음 -->
 	${param.msg }
 </body>
 </html>
