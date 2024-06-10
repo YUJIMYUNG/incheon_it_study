@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,9 +33,9 @@ public class BoardDAO {
 	//전체 게시물 조회
 	//id : board_list
 	//쿼리문은 ref를 내림차순으로, step을 오름차순으로 조회해주세요
-	public List<BoardVO> selectList(){
+	public List<BoardVO> selectList(HashMap<String, Integer>map){
 		SqlSession sqlSession = factory.openSession();
-		List<BoardVO> list = sqlSession.selectList("b.board_list");
+		List<BoardVO> list = sqlSession.selectList("b.board_list", map);
 		sqlSession.close();
 		return list;
 	}
@@ -79,6 +80,13 @@ public class BoardDAO {
 	public int del_update(BoardVO vo) {
 		SqlSession sqlSession = factory.openSession(true);
 		int res = sqlSession.update("b.del_update",vo);
+		sqlSession.close();
+		return res;
+	}
+	
+	public int getRowTotal() {
+		SqlSession sqlSession = factory.openSession();
+		int res = sqlSession.selectOne("b.board_count");
 		sqlSession.close();
 		return res;
 	}

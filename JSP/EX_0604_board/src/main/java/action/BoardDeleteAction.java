@@ -1,5 +1,7 @@
 package action;
 
+import java.io.IOException;
+
 import dao.BoardDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
