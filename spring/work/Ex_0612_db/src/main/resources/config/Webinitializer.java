@@ -5,8 +5,9 @@ import javax.servlet.Filter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import context.RootContext;
-import context.Servlet_context;
+import context.Context_1_mybatis;
+import context.Context_2_dao;
+import mvc.Servlet_context;
 
 public class Webinitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 	//AbstractAnnotationConfigDispatcherServletInitializer
@@ -22,7 +23,7 @@ public class Webinitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] {RootContext.class};
+		return new Class[] {Context_1_mybatis.class, Context_2_dao.class};
 	}
 	
 	//자바에 와일드카드 

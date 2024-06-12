@@ -1,5 +1,8 @@
 package context;
 
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,9 +12,9 @@ public class Context_1_mybatis {
 	@Bean
 	public DataSource ds() {
 		BasicDataSource ds = new BasicDataSource();
-		ds.setDriverClassName("oravle.jdbc.OracleDriver");
+		ds.setDriverClassName("oracle.jdbc.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		ds.setUsername("test_pm");
+		ds.setUsername("TEST_PM");
 		ds.setPassword("1111");
 		
 		return ds;
