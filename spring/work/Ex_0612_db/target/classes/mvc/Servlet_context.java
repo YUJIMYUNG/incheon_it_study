@@ -10,9 +10,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.korea.db.DeptController;
+import com.korea.db.GogekController;
 import com.korea.db.SawonController;
 
 import dao.DeptDAO;
+import dao.GogekDAO;
 import dao.SawonDAO;
 
 @Configuration
@@ -44,5 +46,10 @@ public class Servlet_context implements WebMvcConfigurer {
 	@Bean
 	public SawonController sawonController(SawonDAO sawon_dao) {
 		return new SawonController(sawon_dao);
+	}
+	
+	@Bean
+	public GogekController gogekController(GogekDAO gogek_dao) {
+		return new GogekController(gogek_dao);
 	}
 }

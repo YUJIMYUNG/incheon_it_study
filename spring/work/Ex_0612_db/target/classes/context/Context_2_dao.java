@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dao.DeptDAO;
+import dao.GogekDAO;
 import dao.SawonDAO;
 
 @Configuration
@@ -21,5 +22,10 @@ public class Context_2_dao {
 	@Bean
 	public SawonDAO sawon_dao(SqlSession sqlSession) {
 		return new SawonDAO(sqlSession);
+	}
+	
+	@Bean
+	public GogekDAO gogek_dao(SqlSession sqlSession) {
+		return new GogekDAO(sqlSession);
 	}
 }

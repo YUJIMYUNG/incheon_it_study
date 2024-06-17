@@ -15,5 +15,7 @@
 	<mappers>
 		<mapper resource="mybatis/config/mapper/dept.xml" />
 		<mapper resource="mybatis/config/mapper/sawon.xml" />
+		<mapper resource="mybatis/config/mapper/gogek.xml" />
+		
 	</mappers>
 </configuration>
