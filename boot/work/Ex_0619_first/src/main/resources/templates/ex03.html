@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang=“en” xmlns:th=“http://www.thymeleaf.org”>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- th:each="변수:${}"
+	JSTL의 forEach, Java에서의 for문과 비슷하다. -->
+	
+	<select multiple>
+		<option th:each="opt:${list}" th:value="${opt}">[[${opt}]]</option>
+	</select>
+	
+	<hr>
+	<th:block th:each="opt:${list}" >
+		<input type="checkbox" th:value="${opt}">[[${opt}]]<br>
+	</th:block>
+	<hr>
+	<li th:each="pageButton : ${#numbers.sequence(firstPage,lastPage)}">[[${pageButton}]]</li>
+	<hr>
+	<!--  status변수 
+	타임리프에서 th:each를 사용하면 반복 상태를 추적할 수 있는 status변수 
+	이 변수는 객체이고 다양한 속성을 제공한다. 
+	index : 0부터 시작하는 값 
+	count : 개수를 센다 1
+	size : 요소의 개수 
+	current : 현재 요소 
+	even : 현재 반복이 짝수인지 여부(boolean)
+	odd : 현재 반복이 홀수인지 여부(boolean)
+	first : 현재 반복이 첫번째인지 여부(boolean)
+	last : 현재 반복이 마지막인지 여부(boolean) -->
+	
+	<select multiple>
+		<option th:each="opt,status:${list}" th:value="${opt}">
+			[[${status.index}]]/[[${opt}]]
+		</option>
+	</select>
+	
+	<!--  status 변수의 선언을 생략하면, 변수명Stat라는 이름으로 사용이 가능하다.-->
+	<select multiple>
+		<option th:each="opt:${list}" th:value="${opt}">
+			[[${optStat.index}]]/[[${opt}]]
+		</option>
+	</select>
+</body>
+</html>

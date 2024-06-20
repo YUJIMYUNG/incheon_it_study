@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 유틸리티 객체 
+	- 유용한 메서드를 제공하는 객체들
+	문자열&숫자  : #strings, #numbers 
+	날짜&시간 : #dates, #calendars, #temporals 
+	배열&컬렉션 : #arrays, #lists, #setes, #maps
+	기타 
+	#urls : URI/URL의 escape/umescape처리 
+	#conversions : 스프링의 변환기능 지원 
+	#messages : 자바의 메세지 형식화 국제화 지원 
+	#objects : null확인 기능 제공 
+	#booles :boolean연산(ane, or)기능 제공 -->
+	
+	<h1>#numbers</h1>
+	<p th:text="${#numbers.formatInteger(15,3)}"></p>
+	<p th:text="${#numbers.formatInteger(1000000,3,'COMMA')}"></p>
+	<p th:text="${#numbers.formatCurrency(1000000)}"></p>
+	<p th:text="${#numbers.formatPercent(0.5,2,2)}"></p>
+	
+	<hr>
+	
+	<h1>#string</h1>
+	<p th:text="${#strings.indexOf('kimmaldong','mal')}"></p>
+	<p th:text="${#strings.substring('kimmaldong',3,5)}"></p>
+	<p th:text="${#strings.length('kimmaldong')}"></p>
+	<p th:text="${#strings.trim('     kim mal dong   ')}"></p>
+	<p th:text="${#strings.replace('kimmaldong','mal','gae')}"></p>
+	<p th:text="${#strings.contains('kimmaldong','ez')}"></p>
+	
+	<hr>
+	
+	<h1>#arrays</h1>
+	<!-- controller에서 넘길 때 클래스타입으로 넘겨야한다. -->
+	<p th:text="${#arrays.length(arr)}"></p>
+	<p th:text="${#arrays.isEmpty(arr)}"></p>
+	<p th:text="${#arrays.contains(arr,2)}"></p>
+
+</body>
+</html>
