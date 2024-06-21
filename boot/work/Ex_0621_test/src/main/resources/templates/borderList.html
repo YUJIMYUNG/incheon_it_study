@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>생성날짜</th>
+		</tr>
+		
+		<th:block th:each="board:${list}">
+			<tr th:object="${board}">
+				<td th:text="*{idx}"/>
+				<td th:text="*{name}"/>
+				<td th:text="*{subject}"/>
+				<td th:text="*{content}"/>
+				<td th:text="*{regdate}"/>		
+			</tr>
+		
+		</th:block>
+	</table>
+</body>
+</html>
