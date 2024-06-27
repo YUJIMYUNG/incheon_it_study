@@ -20,6 +20,8 @@ public class ProductServiceimpl implements ProductService{
 		
 		return productDAO.findAll();
 	}
+	
+	
 	public void register(ProductVO productVO) {
 		productDAO.save(productVO);
 		

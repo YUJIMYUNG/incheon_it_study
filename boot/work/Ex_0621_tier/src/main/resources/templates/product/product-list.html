@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	div{
+		margin:0 auto;
+		width: 1000px;
+		}
+		table{
+			width:100%;
+		}
+		button{
+			width:50%;
+		}
+</style>
 </head>
 <body>
-	안녕하세
+	<div id="container">
+	<table border="1">
+		<tr>
+			<th>단일 선택</th>
+			<th>주문 개수</th>
+			<td>상품 번호</td>
+			<td>상품 이름</td>
+			<td>상품 재고</td>
+			<td>상품 가격</td>
+			<td>등록 날짜</td>
+			<td>수정 날짜</td>
+		</tr>
+		
+		<th:block th:each="product:${list}">
+			<tr th:object="${product}">
+				<td><input type="radio" name="productId" th:value="*{productId}"></td>
+				<td><input class="productCount" readonly></td>
+				
+				<td th:text="*{productId}">
+				<td th:text="*{productName}">
+				<td th:text="*{productStock}">
+				<td th:text="*{productPrice}">
+				<td th:text="*{registerDate}">
+				<td th:text="*{updateDate}">
+			</tr>
+		</th:block>
+	</table>
+	<button type="button" id="order-done">주문 완료</button><button type="button" onclick="location.href='/order/list'">주문 내역</button>
+	
+	</div>
+	
+	<form th:action="@{/order/done}" method="get" name="order-form">
+		<input type="hidden" name="productId">
+		<input type="hidden" name="productCount">
+	</form>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	const $radios = $("input[type='radio']");
+	const $inputs = $("input[class='productCount']");
+	const $done = $("#order-done");
+	const $form = $("form[name='order-form']");
+	let $temp, i; //temp는 임시로 사용할 변수, i는 선택된 라디오버튼의 인덱스를 저장할 변수 
+	
+	$radios.on("click", function(){
+		i = $radios.index(this);
+		console.log(i);
+		if($temp){
+			$temp.prop("readOnly",true);
+			$temp.val("");
+		}
+		$inputs.eq(i).prop("readOnly",false);
+		$temp = $inputs.eq(i);
+	});
+
+	$done.on("click", function(){
+		if(i+1){
+			console.log(i);
+			//폼 내에서 name속성이 productId인 input태그를 선택하고, 선택된 라디오버튼의 값을 저장
+			$form.find("input[name='productId']").val($radios.eq(i).val());
+			//폼 내에서name속성이 productCount인 input태그를 선택하고, 선택된 input태그의 값을 저장
+			$form.find("input[name='productCount']").val($inputs.eq(i).val());
+			
+			console.log('index : '+$form.find("input[name='productId']").val());
+			console.log('index : '+$form.find("input[name='productCount']").val());
+			
+			$form.submit();
+			
+		}
+	});
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
