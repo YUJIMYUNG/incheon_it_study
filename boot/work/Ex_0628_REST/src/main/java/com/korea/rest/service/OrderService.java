@@ -1,9 +1,9 @@
-package com.korea.tier.service;
+package com.korea.rest.service;
 
 import java.util.List;
 
-import com.korea.tier.vo.OrderDTO;
-import com.korea.tier.vo.OrderVO;
+import com.korea.rest.vo.OrderDTO;
+import com.korea.rest.vo.OrderVO;
 
 public interface OrderService {
 

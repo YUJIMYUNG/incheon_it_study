@@ -1,4 +1,4 @@
-package com.korea.tier.vo;
+package com.korea.rest.vo;
 
 import lombok.Data;
 
