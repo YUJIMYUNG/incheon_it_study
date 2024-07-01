@@ -4,6 +4,7 @@ CREATE TABLE GOGEK(
 	GOADDR VARCHAR2(50),
 	GOJUMIN VARCHAR2(20),
 	GODAM NUMBER(3)
+);
 
 insert into gogek values(1, '류민', '서울 강남구', '660215-1234567', 3);
 insert into gogek values(2, '강청', '대정 유성구', '760815-1234567', 4);

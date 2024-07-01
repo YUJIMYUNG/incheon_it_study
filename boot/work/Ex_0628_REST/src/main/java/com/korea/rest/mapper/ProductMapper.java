@@ -19,4 +19,6 @@ public interface ProductMapper {
 	//재고 수정 
 	public void updateStock(OrderVO orderVO);
 	
+	public ProductVO select(int productId);
+	
 }

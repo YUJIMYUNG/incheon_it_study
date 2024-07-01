@@ -114,6 +114,9 @@
 	let sort;
 	const $spans = $("div.sort span");
 	const $orderList = $("button#order-list");
+	
+	const $ids = $("input[name='productId']")
+	
 	//최신순, 결제금액 순
 	$spans.on("click",function(){
 		$spans.attr("class","");
@@ -208,7 +211,25 @@
 	});
 
 	$done.on("click", function(){
-		if(i+1){
+		$.ajax({
+			url: "/order/write",
+			type : "post",
+			data : JSON.stringify({productId : $ids.eq(i).val(), productCount : $inputs.eq(i).val()}),
+			contentType : "application/json; charset=utf-8",
+			success : function(){//주문이 성공했을 때
+				$.ajax({ //변경된 재고를 화면에 반영(새로고침 없이)
+					url:"/product/"+$ids.eq(i).val(),
+					success: function(products){
+						console.log(products.productStock);
+						$($("tr").eq(i+1).children()).eq(4).text(products.productStock);	
+					}
+				});
+				$orderList.click();
+			}
+		})
+		
+		
+	/* 	if(i+1){
 			console.log(i);
 			//폼 내에서 name속성이 productId인 input태그를 선택하고, 선택된 라디오버튼의 값을 저장
 			$form.find("input[name='productId']").val($radios.eq(i).val());
@@ -220,7 +241,7 @@
 			
 			$form.submit();
 			
-		}
+		} */
 	});
 </script>
 </html>

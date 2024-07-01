@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardDAO {
 	
 	private final BoardMapper boardMapper;
-	private final BoardVO boardVO;
+	//private final BoardVO boardVO;
 	
 	//게시글 목록
 	public List<BoardVO> selectAll(){

@@ -19,7 +19,7 @@ public class BoardController {
 	final BoardServiece boardServiece;
 	
 	//게시글 목록 페이지 
-	@GetMapping("boardList")
+	@GetMapping("list")
 	public String list(Model model) {
 		List<BoardVO> list = boardServiece.boardList();
 		model.addAttribute("list", list);

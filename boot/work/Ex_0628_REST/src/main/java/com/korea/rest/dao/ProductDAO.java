@@ -30,4 +30,8 @@ public class ProductDAO {
 	public void setProductStock(OrderVO orderVO) {
 		productMapper.updateStock(orderVO);
 	}
+	
+	public ProductVO findById(int productId) {
+		return productMapper.select(productId);
+	}
 }

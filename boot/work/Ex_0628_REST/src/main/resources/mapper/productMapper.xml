@@ -16,4 +16,8 @@
 		WHERE PRODUCT_ID = #{productId}
 	</update>
 	
+	<select id="select" parameterType="int" resultType="productVO">
+		select * from product where product_id = ${productId}
+	</select>
+	
 </mapper>
